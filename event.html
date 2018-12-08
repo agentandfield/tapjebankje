@@ -1,0 +1,95 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+<title>TapjeBankje</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="style.css" />
+</head>
+<body> 
+
+<section class="image">
+     &nbsp
+     &nbsp
+     &nbsp
+     &nbsp
+     
+    <img src="logo.jpeg" style="height: 9em;">
+    </section>
+
+
+<section class="text">
+
+<div id="player" id="video1"></div>
+<script>
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '362',
+        width: '360',
+        playerVars: { 'rel':0, 'autoplay': 1, 'controls': 0 },
+        videoId: 'sQTeSu2you8',
+        events: {
+            'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+  //Uncomment to autoplay function
+    //event.target.playVideo();
+}
+
+var done = false;
+
+function onPlayerStateChange(event) {        
+    if(event.data === YT.PlayerState.ENDED) {          
+        stopVideo();
+    }
+}
+
+function stopVideo() {
+    player.stopVideo();
+    document.getElementById("player").style.display = "none";
+  document.getElementsByClassName('fluid-width-video-wrapper').style.padding = "0"; 
+}
+</script>
+
+    <div id="other" style="display:; width:360px; height:344px; background-color:black;">
+        <div class="button"><a href="index.html">Play Again</a></div>
+    <div class="button"><a href="http://www.tapjebankje.nl/208-2/">Leave Poem</a></div>
+    <div class="button2"><a href="map.html">Next Bench</a></div>
+    <div class="button2"><a href="tapjebankje.html">Finish Tour</a></div>
+    </div>
+</div>
+<script>
+    var vid=document.getElementById('video1');
+    vid.addEventListener("ended", hideVideo, false);
+
+    function hideVideo() {
+        var vid=document.getElementById('video1');
+        var other=document.getElementById('other');
+        vid.removeEventListener("ended", hideVideo, false);
+        vid.style.display='none';
+        other.style.display='block';
+    }
+
+</script>
+
+</section>
+
+<section class="block-of-text">
+&nbsp
+  <h1>TapjeBankje Test Site</h1>
+  &nbsp
+</section>
+
+</body> 
+</html>
